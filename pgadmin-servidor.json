@@ -1,0 +1,1 @@
+{"Servers":{"1":{"Name":"Transact Lab · PostgreSQL local","Group":"Laboratorio","Host":"/home/will/Documents/Codex/2026-11-01/nec/work/pg-socket","Port":55432,"MaintenanceDB":"transact_lab","Username":"demo","SSLMode":"prefer"}}}

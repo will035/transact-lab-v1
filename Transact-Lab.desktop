@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Transact Lab y pgAdmin
+Comment=Iniciar PostgreSQL, la demo y pgAdmin
+Exec=bash -c 'bash /home/will/Documents/Codex/2026-11-01/nec/outputs/transact-lab-v1/iniciar.sh; xdg-open http://127.0.0.1:3000; read -r -p "Pulsa Enter para cerrar esta ventana"'
+Terminal=true
+Icon=applications-development
+Categories=Development;

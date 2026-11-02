@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+const call=async(p,b)=>{const r=await fetch('http://127.0.0.1:3000/api/'+p,b===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const d=await r.json();assert.equal(r.status,200,JSON.stringify(d));return d;};
+await call('reset',{});
+let r=await call('transfer',{amount:100});assert.equal(r.outcome,'commit');assert.deepEqual(r.state.accounts.map(a=>a.balance),[90000,60000]);
+r=await call('transfer',{amount:100,fail:true});assert.equal(r.outcome,'rollback');assert.deepEqual(r.state.accounts.map(a=>a.balance),[90000,60000]);
+r=await call('transfer',{amount:999999});assert.equal(r.outcome,'rollback');assert.deepEqual(r.state.accounts.map(a=>a.balance),[90000,60000]);
+r=await call('race',{safe:true});assert.equal(r.state.purchases.length,1);assert.equal(r.state.stock,0);assert.equal(r.trace.filter(x=>x.sql==='ROLLBACK').length,1);
+r=await call('race',{safe:false});assert.equal(r.state.purchases.length,2);assert.equal(r.state.stock,0);
+assert.equal((await call('state')).history.length,5);
+await call('reset',{});console.log('PASS: COMMIT, ROLLBACK, fondos insuficientes, bloqueo concurrente, sobreventa sin protección, historial y reinicio.');
