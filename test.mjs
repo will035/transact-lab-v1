@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-const call=async(p,b)=>{const r=await fetch('http://127.0.0.1:3000/api/'+p,b===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const d=await r.json();assert.equal(r.status,200,JSON.stringify(d));return d;};
+const call=async(p,b)=>{const r=await fetch((process.env.TEST_BASE_URL || 'http://127.0.0.1:3000')+'/api/'+p,b===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const d=await r.json();assert.equal(r.status,200,JSON.stringify(d));return d;};
 await call('reset',{});
 let r=await call('transfer',{amount:100});assert.equal(r.outcome,'commit');assert.deepEqual(r.state.accounts.map(a=>a.balance),[90000,60000]);
 r=await call('transfer',{amount:100,fail:true});assert.equal(r.outcome,'rollback');assert.deepEqual(r.state.accounts.map(a=>a.balance),[90000,60000]);

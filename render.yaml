@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: transact-lab-v1
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: node server.mjs
+    healthCheckPath: /api/state
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: DATABASE_URL
+        sync: false

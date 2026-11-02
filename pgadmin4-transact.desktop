@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=pgAdmin 4
+Comment=Administración de PostgreSQL · Transact Lab
+Exec=/home/will/Documents/Codex/2026-11-01/nec/outputs/transact-lab-v1/abrir-pgadmin-escritorio.sh
+Icon=pgadmin4-transact
+Terminal=false
+Categories=Development;Database;
+Keywords=PostgreSQL;SQL;database;pgAdmin;
+StartupWMClass=pgadmin4

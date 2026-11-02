@@ -1,0 +1,6 @@
+# Perfil de escritorio basado en el perfil oficial distribuido por pgAdmin 4.
+abi <abi/4.0>,
+include <tunables/global>
+profile pgadmin4-transact /home/will/Documents/Codex/2026-11-01/nec/work/pgadmin-desktop/usr/pgadmin4/bin/pgadmin4 flags=(unconfined) {
+  userns,
+}
